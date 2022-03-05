@@ -1,5 +1,7 @@
 const inquirer = require('inquirer');
 
+// prompt for manager
+
 const teamCrit = () => {
     roster = [];
     return inquirer.prompt([
@@ -40,6 +42,12 @@ const teamCrit = () => {
             message: 'Please enter office number!'
         }
     ])
+
+    // prompt for engineer
+
+    // prompt for intern
+
+    
     .then(team => {
         roster.push(team);
         console.log(team);
