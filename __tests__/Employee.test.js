@@ -1,6 +1,8 @@
 const Employee = require('../lib/Employee');
 
 // test for name
+// test for id
+// test for email
 test('creates employee object', () => {
     const employee = new Employee('Nick', '6', 'blah@yajoo.com');
 
@@ -8,8 +10,5 @@ test('creates employee object', () => {
     expect(employee.employeeId).toBe('6');
     expect(employee.email).toBe('blah@yajoo.com');
 });
-// test for id
-
-// test for email
 
 module.exports = Employee;
