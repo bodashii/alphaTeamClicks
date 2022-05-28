@@ -1,76 +1,104 @@
 
 // links to other files in the directory
 const inquirer = require('inquirer');
+const ConfirmPrompt = require('inquirer/lib/prompts/confirm');
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager')
 
 
-// prompt for manager
-const buildTeam = () => {
-    roster = [];
+// Initializes app and begins prompt
 
-    // prompts for user input from the manager
-    return inquirer
-        .prompt([
-            {
-                type: 'input',
-                name: 'name',
-                message: 'Please enter team managers name! (Required)',
-                validate: nameInput => {
-                    if (nameInput) {
-                        return true;
-                    } else {
-                        console.log('Please enter manager name!');
-                        return false;
-                    }
-                }
-            },
-            {
-                type: 'input',
-                name: 'employeeId',
-                message: 'Please enter employee ID number!'
-            },
-            {
-                type: 'input',
-                name: 'email',
-                message: 'What is your email? (Required)',
-                validate: emailInput => {
-                    if(emailInput) {
-                        return true;
-                    } else {
-                        console.log('Please enter your email! (Required)');
-                        return false;
-                    }
-                }
-            },
-            {
-                type: 'input',
-                name: 'officeNumber',
-                message: 'What is the office number? (Required)',
-                validate: officeNumberInput => {
-                    if(officeNumberInput) {
-                        return true;
-                    } else {
-                        console.log('Please enter the office number!');
-                        return false;
-                    }
-                }
-            },
-            {
-                type: 'list',
-                message: 'Would you like to add another member to the team?',
-                name: 'action',
-                choices: ['Engineer', 'Intern', 'No']
-            }
-        ])
-        .then(team => {
-            roster.push(team);
-            console.log(team);
+function getTeamCrit() {
+    // welcome user
+    console.log('alphaTeamClicks');
+
+    inquirer
+        .prompt({
+            type: 'list',
+            message: 'Ready to make a roster for your team?',
+            name: 'action',
+            choices: ['Yes', 'No']
         })
+        .then(({ action }) => {
+            if (action === 'No') {
+                console.log('Maybe next time!');
+                return;
+        }
         
+        inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    name: 'name',
+                    message: 'Please enter team managers name! (Required)',
+                    validate: nameInput => {
+                        if (nameInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter manager name!');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'input',
+                    name: 'employeeId',
+                    message: 'Please enter employee ID number!'
+                },
+                {
+                    type: 'input',
+                    name: 'email',
+                    message: 'What is your email? (Required)',
+                    validate: emailInput => {
+                        if(emailInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter your email! (Required)');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'input',
+                    name: 'officeNumber',
+                    message: 'What is the office number? (Required)',
+                    validate: officeNumberInput => {
+                        if(officeNumberInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter the office number!');
+                            return false;
+                        }
+                    }
+                }
+            ]);
 };
 
-buildTeam();
+getTeamCrit();
+
+
+// prompt for manager
+// const buildTeam = () => {
+//     roster = [];
+
+//     // prompts for user input from the manager
+//     return inquirer
+//         .prompt(,
+//             {
+//                 type: 'list',
+//                 message: 'Would you like to add another member to the team?',
+//                 name: 'action',
+//                 choices: ['Engineer', 'Intern', 'No']
+//             }
+//         ])
+//         .then(team => {
+//             roster.push(team);
+//             console.log(team);
+//         })
+        
+// };
+
+// buildTeam();
 
 
 // const teamCrit = () => {
